@@ -1,6 +1,6 @@
-import { badgeColors } from "@/config/colors";
 import clsx from "clsx";
 import React from "react";
+import KanbanList from "./Kanban/list";
 
 interface TasksProps {}
 
@@ -47,8 +47,9 @@ const dummyTasksData = [
   },
 ];
 
-export function TasksSection({ ...rest }: TasksProps) {
+export function TasksSection() {
   return (
+    <>
     <div className="grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 pointer-events-none">
       {dummyTasksData?.map((dummy, id) => (
         <div
@@ -103,5 +104,7 @@ export function TasksSection({ ...rest }: TasksProps) {
         </div>
       ))}
     </div>
+    {/* <KanbanList></KanbanList> */}
+    </>
   );
 }

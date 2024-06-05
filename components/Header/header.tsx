@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "../Button/button";
 import { PlusIcon } from "@heroicons/react/20/solid";
+import { Button } from "@/ui/Button/button";
 
 const Header = () => {
   return (

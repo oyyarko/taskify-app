@@ -3,9 +3,8 @@
 import clsx from "clsx";
 import React, { useState } from "react";
 import { Bars3Icon, Squares2X2Icon } from "@heroicons/react/20/solid";
-
-import { DropdownCheckbox } from "../Dropdown/dropdownCheckbox";
-import { Search } from "../Search/search";
+import { Search } from "@/ui/Search/search";
+import { DropdownCheckbox } from "@/ui/Dropdown/dropdownCheckbox";
 
 const filterLinks = [
   { id: 1, label: "John Doe", value: 1 },

@@ -1,7 +1,7 @@
+import { FilterSection } from "@/components/Filters/filter";
+import Header from "@/components/Header/header";
+import { TasksSection } from "@/components/TasksSection/tasks";
 import React from "react";
-import Header from "../ui/Header/header";
-import { FilterSection } from "../ui/Filters/filter";
-import { TasksSection } from "../ui/TasksSection/tasks";
 
 const Dashboard = () => {
   return (

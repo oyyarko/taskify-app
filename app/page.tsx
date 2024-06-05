@@ -1,5 +1,6 @@
+import { Button } from "@/ui/Button/button";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { Button } from "./ui/Button/button";
+
 import Link from "next/link";
 
 export default function Home() {
