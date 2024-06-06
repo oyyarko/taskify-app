@@ -1,7 +1,7 @@
 export const dummyTasksData = [
   {
     id: "af3",
-    label: "Incoming leads a very long text coming in your way to check the size of title",
+    label: "Incoming leads",
     description: "Item 2.1 - Vivamus eget ante tempor",
     color: "#b8b8ff",
     priority: 1, // 1:normal, 2: Medium, 3:High, 4:Urgent

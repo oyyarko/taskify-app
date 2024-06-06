@@ -14,7 +14,7 @@ const Card = ({ card }: CardProps) => {
       className="relative border-gray-200 dark:border-slate-900 border dark:bg-slate-800 bg-stone-50 text-black min-h-48 max-h-72 dark:text-white !rounded-3xl w-full"
       key={card.id}
     >
-      <div className="font-semibold truncate px-10 p-3 w-full rounded-tr-3xl rounded-tl-3xl text-center text-black dark:text-amber-400 dark:bg-slate-900 bg-amber-100">
+      <div className="font-semibold px-10 p-3 w-full rounded-tr-3xl rounded-tl-3xl text-center text-black dark:text-amber-400 dark:bg-slate-900 bg-amber-100">
         {card.label}
       </div>
       <p className="px-3 py-3 line-clamp-2 ">{card.description}</p>
