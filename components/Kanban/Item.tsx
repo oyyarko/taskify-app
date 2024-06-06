@@ -31,7 +31,7 @@ const KanbanContainer = ({
         {...listeners}
         className={clsx(
           "rounded-3xl relative cursor-grab",
-          active ? (active.id === id ? 1 : 0.5) : 1
+          active ? (active.id === id ? "opacity-100" : "opacity-70") : "opacity-100"
         )}
       >
         {active?.id === id && (

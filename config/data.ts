@@ -1,7 +1,7 @@
 export const dummyTasksData = [
   {
     id: "af3",
-    label: "Incoming leads",
+    label: "Incoming leads a very long text coming in your way to check the size of title",
     description: "Item 2.1 - Vivamus eget ante tempor",
     color: "#b8b8ff",
     priority: 1, // 1:normal, 2: Medium, 3:High, 4:Urgent
@@ -23,7 +23,7 @@ export const dummyTasksData = [
     description: "Item 2.1 - Vivamus eget ante tempor",
     color: "#BCD4E6",
     priority: 4,
-    type: 2,
+    type: 3,
     tags: ["Agile", "HR"],
   },
   {
@@ -41,7 +41,7 @@ export const dummyTasksData = [
     description: "Lorem Ipsum doler sit amet",
     color: "#FAD2E1",
     priority: 3,
-    type: 3,
+    type: 5,
     tags: ["Testing", "Deploy"],
   },
 ];

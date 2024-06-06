@@ -14,19 +14,13 @@ const Card = ({ card }: CardProps) => {
       className="relative border-gray-200 dark:border-slate-900 border dark:bg-slate-800 bg-stone-50 text-black min-h-48 max-h-72 dark:text-white !rounded-3xl w-full"
       key={card.id}
     >
-      <div className="font-semibold p-3 h-12 w-full rounded-tr-3xl rounded-tl-3xl text-center text-black dark:text-amber-400 dark:bg-slate-900 bg-amber-100">
+      <div className="font-semibold truncate px-10 p-3 w-full rounded-tr-3xl rounded-tl-3xl text-center text-black dark:text-amber-400 dark:bg-slate-900 bg-amber-100">
         {card.label}
       </div>
-      <p className="px-3 py-3 line-clamp-2">{card.description}</p>
-      {/* <div className="rounded-md flex w-auto  px-0.5 gap-1 border border-red-500 bg-red-100">
-            <ClockIcon className="h-4 w-4" />
-            <span className="text-xs w-full font-medium">
-              {Math.ceil(+card.priority + 4 * 2.6)} Days
-            </span>
-          </div> */}
+      <p className="px-3 py-3 line-clamp-2 ">{card.description}</p>
       <div
         className={
-          "flex items-center py-1 absolute w-full bottom-3 border-t border-gray-200 dark:border-slate-700 pt-3 justify-between"
+          "flex items-center absolute w-full bottom-3 border-t border-gray-200 dark:border-slate-700 pt-3 justify-between"
         }
       >
         <div className="flex justify-between gap-1 items-center">
@@ -35,7 +29,7 @@ const Card = ({ card }: CardProps) => {
               className={clsx(
                 "w-3 h-3 border-4 rounded-full ms-3",
                 card.priority === 1
-                  ? "bg-blue-200 border-blue-400 text-blue-800"
+                  ? "bg-green-200 border-green-400 text-green-800"
                   : card.priority === 2
                   ? "bg-amber-300 border-amber-400 text-amber-800"
                   : card.priority === 3
