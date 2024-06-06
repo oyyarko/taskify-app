@@ -14,9 +14,9 @@ export function TasksSection() {
   const taskList = useRecoilValue(tasksListsAtom);
   const [_, setTaskList] = useRecoilState(tasksListsAtom);
 
-  const updateTaskCards = (taskId: any, stageId: any) => {
+  const updateTaskCards = (taskId: any, stageId: number) => {
     setTaskList((prev) =>
-      taskList.reduce((acc, curr, index) => {
+      taskList.reduce((acc: any, curr, index) => {
         if (curr.id === taskId) {
           acc.push({ ...curr, type: stageId });
         } else {
@@ -33,7 +33,7 @@ export function TasksSection() {
     const taskStageId = event.active.data.current.type;
 
     if (taskStageId === stageId) return;
-    
+
     updateTaskCards(taskId, stageId);
   };
 
