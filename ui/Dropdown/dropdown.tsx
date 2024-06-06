@@ -45,7 +45,7 @@ export function Dropdown({
             className="inline-flex w-full justify-center gap-x-1.5 rounded-full bg-slate-900 px-3 py-2 text-xs font-medium text-gray-400 shadow-sm ring-1 ring-inset ring-gray-900 hover:bg-slate-500 hover:text-black items-center text-ellipsis truncate"
             {...rest}
           >
-            {links.find((link) => filters[type] === link.value)?.label ||
+            {links.find((link) => filters[type as keyof typeof filters] === link.value)?.label ||
               filterLabel ||
               "Filter"}
             <ChevronDownIcon
