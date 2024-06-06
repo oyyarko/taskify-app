@@ -40,7 +40,7 @@ export function FilterSection() {
         <Bars3Icon
           className={clsx(
             displayView ? "opacity-30 pointer-events-none" : "cursor-pointer",
-            "h-6 w-5 hover:text-amber-400"
+            "h-6 w-5 hover:text-amber-400 dark:hover:text-amber-400 text-slate-900 dark:text-gray-50",
           )}
           aria-hidden="true"
           title="List View"
@@ -49,7 +49,7 @@ export function FilterSection() {
         <Squares2X2Icon
           className={clsx(
             !displayView ? "opacity-30 pointer-events-none" : "cursor-pointer",
-            "h-6 w-5 hover:text-amber-400"
+            "h-6 w-5 hover:text-amber-400 dark:hover:text-amber-400 text-slate-900 dark:text-gray-50"
           )}
           aria-hidden="true"
           title="Grid View"

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen p-16 bg-black flex flex-col gap-5 flex-wrap justify-center items-center">
+    <main className="min-h-screen p-16 dark:bg-black bg-black flex flex-col gap-5 flex-wrap justify-center items-center">
       <div className="font-bold text-8xl text-amber-400 tracking-wide">
         Taskify
       </div>

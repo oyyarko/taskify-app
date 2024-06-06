@@ -42,10 +42,12 @@ export function Dropdown({
       <Menu as="div" className="relative inline-block text-left max-sm:w-full">
         <div>
           <MenuButton
-            className="inline-flex w-full justify-center gap-x-1.5 rounded-full bg-slate-900 px-3 py-2 text-xs font-medium text-gray-400 shadow-sm ring-1 ring-inset ring-gray-900 hover:bg-slate-500 hover:text-black items-center text-ellipsis truncate"
+            className="inline-flex w-full justify-center gap-x-1.5 border dark:border-slate-800 border-gray-100 rounded-full text-center font-medium bg-white shadow-sm dark:bg-slate-900 px-3 py-2 text-xs text-gray-400  ring-inset ring-gray-900 dark:hover:bg-slate-500 hover:bg-amber-400 hover:text-black items-center text-ellipsis truncate"
             {...rest}
           >
-            {links.find((link) => filters[type as keyof typeof filters] === link.value)?.label ||
+            {links.find(
+              (link) => filters[type as keyof typeof filters] === link.value
+            )?.label ||
               filterLabel ||
               "Filter"}
             <ChevronDownIcon
@@ -65,7 +67,7 @@ export function Dropdown({
         >
           <MenuItems
             className={clsx(
-              "absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-2xl text-gray-400 bg-slate-900 ring-1 ring-black ring-opacity-5 focus:outline-none -rounded-tr-2xl",
+              "absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-2xl text-slate-900 dark:text-gray-400 dark:bg-slate-900 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none -rounded-tr-2xl",
               className
             )}
           >
