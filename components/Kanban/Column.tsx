@@ -2,15 +2,14 @@
 
 import { Button } from "@/ui/Button/button";
 import { useDroppable, UseDroppableArguments } from "@dnd-kit/core";
-import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import React from "react";
 
 type Props = {
-  id: string;
+  id: number;
   title: string;
   description?: React.ReactNode;
-  count: number;
+  count?: number;
   data?: UseDroppableArguments["data"];
   onAddClick?: (args: { id: string }) => void;
 };
@@ -19,6 +18,7 @@ const KanbanColumn = ({
   children,
   id,
   data,
+  title,
 }: React.PropsWithChildren<Props>) => {
   const { isOver, setNodeRef, active } = useDroppable({
     id,
@@ -28,23 +28,24 @@ const KanbanColumn = ({
   const onAddClickHandler = () => {};
 
   return (
-    <div ref={setNodeRef} className="flex flex-col py-4">
-      <div className="p-4">
-        <div className="w-full flex gap-2 justify-between">
-          <h3 className="text-ellipsis text-xs font-semibold whitespace-nowrap">
-            Title todo
-          </h3>
-          <PlusCircleIcon className="h-4 w-4" />
+    <div ref={setNodeRef} className="flex flex-col py-4 p-3">
+      <div className="w-full gap-3 flex flex-col ">
+        <div className="flex gap-2 items-center">
+          <div className="font-semibold py-3 px-4 h-12 w-full rounded-3xl text-center text-amber-400 bg-slate-900 flex justify-between">
+            {title}
+            <Button className="h-5 !px-2 text-xs">Add</Button>
+          </div>
         </div>
-
         <div
           className={clsx(
-            "flex border-2 gap-4 border-dashed rounded-xl h-72",
-            isOver ? "border-amber-400" : "border-transparent",
-            active ? "overflow-y-scroll" : "overflow-y-auto"
+            "bg-transparent max-h-[calc(75vh-70px)] min-h-48 flex-1 border-2 gap-4  rounded-3xl",
+            isOver
+              ? "border-amber-400 border-dashed min-h-[calc(75vh-70px)]"
+              : "border-transparent",
+            active ? "overflow-y-hidden" : "overflow-y-auto scrollbar"
           )}
         >
-          <div className="mt-3 flex flex-col gap-3">{children}</div>
+          <div className="flex flex-col gap-3">{children}</div>
         </div>
       </div>
     </div>

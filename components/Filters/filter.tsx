@@ -4,7 +4,7 @@ import clsx from "clsx";
 import React, { useState } from "react";
 import { Bars3Icon, Squares2X2Icon } from "@heroicons/react/20/solid";
 import { Search } from "@/ui/Search/search";
-import { DropdownCheckbox } from "@/ui/Dropdown/dropdownCheckbox";
+import { Dropdown } from "@/ui/Dropdown/dropdown";
 
 const filterLinks = [
   { id: 1, label: "John Doe", value: 1 },
@@ -13,9 +13,14 @@ const filterLinks = [
 ];
 
 const categoryLinks = [
-  { id: 1, label: "Project", value: 1 },
-  { id: 2, label: "Tasks", value: 2 },
-  { id: 3, label: "Misc", value: 3 },
+  { id: 1, label: "Mobile", value: 1 },
+  { id: 2, label: "Waterfall", value: 2 },
+  { id: 3, label: "Testing", value: 3 },
+  { id: 4, label: "Deploy", value: 4 },
+  { id: 5, label: "Agile", value: 5 },
+  { id: 6, label: "HR", value: 6 },
+  { id: 7, label: "Web", value: 7 },
+  { id: 8, label: "React", value: 8 },
 ];
 
 const sortBy = [
@@ -65,13 +70,22 @@ export function FilterSection() {
             : "max-sm:hidden"
         )}
       >
-        <Search />
-        <DropdownCheckbox links={filterLinks} filterLabel={"By Assignees"} />
-        <DropdownCheckbox links={categoryLinks} filterLabel="Categories" />
-        <DropdownCheckbox
+        <Search type="taskSearch" />
+        <Dropdown
+          links={filterLinks}
+          filterLabel={"By Assignees"}
+          type={"assignee"}
+        />
+        <Dropdown
+          links={categoryLinks}
+          filterLabel="Categories"
+          type={"cateogory"}
+        />
+        <Dropdown
           links={sortBy}
           className="!w-56"
           filterLabel="Sort By"
+          type={"sortby"}
         />
       </div>
     </div>

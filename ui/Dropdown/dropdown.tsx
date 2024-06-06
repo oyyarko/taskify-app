@@ -7,9 +7,11 @@ import {
   MenuItems,
   Transition,
 } from "@headlessui/react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
-import React, { useState } from "react";
+import React from "react";
+import { filtersAtom } from "@/atoms/filters";
 
 interface Links {
   id: number;
@@ -17,21 +19,23 @@ interface Links {
   value: string | number;
 }
 
-interface DropdownCheckboxProps {
+interface DropdownProps {
   links: Links[];
   filterLabel: string;
   className?: string;
+  type: string;
+  checkbox?: boolean;
 }
 
-export function DropdownCheckbox({
+export function Dropdown({
   className,
   links,
   filterLabel,
+  type,
   ...rest
-}: DropdownCheckboxProps) {
-  const [selectedFilter, setSelectedFilter] = useState<string | number>(
-    "Filter"
-  );
+}: DropdownProps) {
+  const filters = useRecoilValue(filtersAtom);
+  const [_, setSelectedFilter] = useRecoilState(filtersAtom);
 
   return (
     <Menu as="div" className="relative inline-block text-left max-sm:w-full">
@@ -40,7 +44,7 @@ export function DropdownCheckbox({
           className="inline-flex w-full justify-center gap-x-1.5 rounded-full bg-slate-900 px-3 py-2 text-xs font-medium text-gray-400 shadow-sm ring-1 ring-inset ring-gray-900 hover:bg-slate-500 hover:text-black items-center text-ellipsis truncate"
           {...rest}
         >
-          {links.find((link) => selectedFilter === link.value)?.label ||
+          {links.find((link) => filters[type] === link.value)?.label ||
             filterLabel ||
             "Filter"}
           <ChevronDownIcon
@@ -75,7 +79,12 @@ export function DropdownCheckbox({
                         : "text-gray-400",
                       "block px-4 py-2 text-sm cursor-pointer max-sm:w-full"
                     )}
-                    onClick={() => setSelectedFilter(link.value)}
+                    onClick={() =>
+                      setSelectedFilter((prev) => ({
+                        ...prev,
+                        [type]: link.value,
+                      }))
+                    }
                   >
                     {link.label}
                   </div>

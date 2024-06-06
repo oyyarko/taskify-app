@@ -16,6 +16,29 @@
   }
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 50px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fbbf24;
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fbbf24;
+  border-radius: 50px;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
