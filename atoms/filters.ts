@@ -13,7 +13,7 @@ export const filtersAtom = atom({
 });
 
 export const taskFiltersAtom = atom({
-  key: "filtersState",
+  key: "taskFilters",
   default: {
     title: "",
     description: "",
