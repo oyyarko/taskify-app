@@ -5,6 +5,7 @@ import Modal from "@/ui/Modal/Modal";
 import { useDroppable, UseDroppableArguments } from "@dnd-kit/core";
 import clsx from "clsx";
 import React, { useState } from "react";
+import AddTask from "../TasksSection/AddTask";
 
 type Props = {
   id: number;
@@ -25,7 +26,7 @@ const KanbanColumn = ({
     id,
     data,
   });
-  let [addCardModal, setAddCardModal] = useState(false)
+  let [addCardModal, setAddCardModal] = useState(false);
 
   const onAddClickHandler = () => {};
 
@@ -35,7 +36,12 @@ const KanbanColumn = ({
         <div className="flex gap-2">
           <div className="font-semibold py-3 px-4 h-12 w-full rounded-3xl text-center text-black dark:text-amber-400 bg-white dark:border-slate-900 border-gray-200 border  dark:bg-slate-900 flex justify-between items-center">
             {title}
-            <Button className="h-5 !px-2 text-xs" onClick={() => setAddCardModal(true)}>Add</Button>
+            <Button
+              className="h-5 !px-2 text-xs"
+              onClick={() => setAddCardModal(true)}
+            >
+              Add
+            </Button>
           </div>
         </div>
         <div
@@ -50,7 +56,16 @@ const KanbanColumn = ({
           <div className="flex flex-col gap-3">{children}</div>
         </div>
       </div>
-      {addCardModal ? <Modal isOpen={addCardModal} onClose={() => setAddCardModal(false)}/> : null}
+      {addCardModal ? (
+        <Modal
+          title="Add Task"
+          isOpen={addCardModal}
+          buttonTitle="Save"
+          onClose={() => setAddCardModal(false)}
+        >
+          <AddTask />
+        </Modal>
+      ) : null}
     </div>
   );
 };

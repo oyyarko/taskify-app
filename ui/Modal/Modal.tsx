@@ -13,9 +13,21 @@ type ModalProps = {
   isOpen: boolean;
   handleOnSubmit?: () => void;
   onClose: () => void;
+  title?: string;
+  description?: string;
+  buttonTitle?: string;
+  children?: React.ReactNode;
 };
 
-const Modal = ({ isOpen, onClose, ...rest }: ModalProps) => {
+const Modal = ({
+  isOpen,
+  onClose,
+  title,
+  description,
+  buttonTitle,
+  children,
+  ...rest
+}: ModalProps) => {
   return (
     <Transition show={isOpen}>
       <Dialog onClose={onClose} className="relative z-50">
@@ -38,22 +50,22 @@ const Modal = ({ isOpen, onClose, ...rest }: ModalProps) => {
           leaveTo="opacity-0 scale-95"
         >
           <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-            <DialogPanel className="max-w-lg space-y-4 dark:bg-slate-800 bg-white text-black dark:text-white shadow-lg rounded-3xl p-12">
-              <DialogTitle className="text-lg font-bold">
-                Deactivate account
+            <DialogPanel className="min-w-md w-96 dark:bg-slate-800 bg-white text-black dark:text-white shadow-lg rounded-3xl">
+              <DialogTitle className="text-lg p-4 rounded-tr-3xl rounded-tl-3xl font-bold dark:bg-slate-900 bg-amber-100">
+                {title}
               </DialogTitle>
-              <Description>
-                This will permanently deactivate your account
-              </Description>
-              <p>
-                Are you sure you want to deactivate your account? All of your
-                data will be permanently removed.
-              </p>
-              <div className="flex gap-4">
-                <Button onClick={onClose}>Deactivate</Button>
-                <Button onClick={onClose} className="!border-amber-500 border-2  text-black dark:text-white hover:text-black dark:hover:text-white !bg-transparent">
-                  Cancel
-                </Button>
+              {description ? <Description>{description}</Description> : null}
+              <div className="p-5 gap-5 flex flex-col">
+                {children}
+                <div className="flex gap-4">
+                  <Button onClick={onClose}>{buttonTitle}</Button>
+                  <Button
+                    onClick={onClose}
+                    className="!border-amber-500 border-2  text-black dark:text-white hover:text-black dark:hover:text-white !bg-transparent"
+                  >
+                    Cancel
+                  </Button>
+                </div>
               </div>
             </DialogPanel>
           </div>

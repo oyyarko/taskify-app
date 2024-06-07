@@ -11,3 +11,14 @@ export const filtersAtom = atom({
     sortby: null,
   },
 });
+
+export const taskFiltersAtom = atom({
+  key: "filtersState",
+  default: {
+    title: "",
+    description: "",
+    priority: 1,
+    assignedTo: [],
+    dueDate: new Date(),
+  },
+});

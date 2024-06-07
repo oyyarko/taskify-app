@@ -5,34 +5,23 @@ import React, { useState } from "react";
 import { Bars3Icon, Squares2X2Icon } from "@heroicons/react/20/solid";
 import { Search } from "@/ui/Search/search";
 import { Dropdown } from "@/ui/Dropdown/dropdown";
-
-const filterLinks = [
-  { id: 1, label: "John Doe", value: 1 },
-  { id: 2, label: "Mary Brian", value: 2 },
-  { id: 3, label: "Giltron Lu'Brios", value: 3 },
-];
-
-const categoryLinks = [
-  { id: 1, label: "Mobile", value: 1 },
-  { id: 2, label: "Waterfall", value: 2 },
-  { id: 3, label: "Testing", value: 3 },
-  { id: 4, label: "Deploy", value: 4 },
-  { id: 5, label: "Agile", value: 5 },
-  { id: 6, label: "HR", value: 6 },
-  { id: 7, label: "Web", value: 7 },
-  { id: 8, label: "React", value: 8 },
-];
-
-const sortBy = [
-  { id: 1, label: "Priority | High to Low", value: 1 },
-  { id: 2, label: "Priority | Low to High", value: 2 },
-  { id: 3, label: "Latest created", value: 3 },
-  { id: 4, label: "By Team Size", value: 4 },
-];
+import { useRecoilState, useRecoilValue } from "recoil";
+import { filtersAtom } from "@/atoms/filters";
+import { categoryLinks, filterLinks, sortBy } from "@/config";
 
 export function FilterSection() {
   const [displayView, setDisplayView] = useState<boolean>(true); //1: grid, 0: list
   const [mobileFilterView, setMobileFilterView] = useState<boolean>(false);
+
+  const filters = useRecoilValue(filtersAtom);
+  const [_, setSelectedFilter] = useRecoilState(filtersAtom);
+
+  const handleSetSelectedFilter = (e: any, key: string) => {
+    setSelectedFilter((prev) => ({
+      ...prev,
+      [key]: e,
+    }));
+  };
 
   return (
     <div className="flex justify-between items-center flex-wrap max-sm:w-full max-sm:gap-3">
@@ -40,7 +29,7 @@ export function FilterSection() {
         <Bars3Icon
           className={clsx(
             displayView ? "opacity-30 pointer-events-none" : "cursor-pointer",
-            "h-6 w-5 hover:text-amber-400 dark:hover:text-amber-400 text-slate-900 dark:text-gray-50",
+            "h-6 w-5 hover:text-amber-400 dark:hover:text-amber-400 text-slate-900 dark:text-gray-50"
           )}
           aria-hidden="true"
           title="List View"
@@ -72,16 +61,22 @@ export function FilterSection() {
       >
         <Search type="taskSearch" />
         <Dropdown
+          filters={filters}
+          setSelectedFilter={(e) => handleSetSelectedFilter(e, "assignee")}
           links={filterLinks}
           filterLabel={"By Assignees"}
           type={"assignee"}
         />
         <Dropdown
+          filters={filters}
+          setSelectedFilter={(e) => handleSetSelectedFilter(e, "category")}
           links={categoryLinks}
           filterLabel="Categories"
-          type={"cateogory"}
+          type={"category"}
         />
         <Dropdown
+          filters={filters}
+          setSelectedFilter={(e) => handleSetSelectedFilter(e, "sortby")}
           links={sortBy}
           className="!w-56"
           filterLabel="Sort By"

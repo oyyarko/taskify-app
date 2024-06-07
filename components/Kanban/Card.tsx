@@ -1,5 +1,6 @@
 "use client";
 
+import { taskPriority } from "@/config";
 import { ClockIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import React from "react";
@@ -38,13 +39,10 @@ const Card = ({ card }: CardProps) => {
               )}
             ></div>
             <div className="text-xs font-semibold ms-1 dark:text-white text-black">
-              {card.priority === 1
-                ? "Normal"
-                : card.priority === 2
-                ? "Medium"
-                : card.priority === 3
-                ? "High"
-                : "Urgent"}
+              {
+                taskPriority.find((task) => task.value === card?.priority)
+                  ?.label
+              }
             </div>
           </div>
         </div>
