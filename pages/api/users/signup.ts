@@ -1,11 +1,19 @@
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
+import { runMiddleware, uploadMiddleware } from "@/lib/middleware";
 
-export default async function handler(req: Request, res: Response) {
+export const config = {
+  api: {
+    bodyParser: false, // Disable the default body parser
+  },
+};
+
+export default async function signup(req: Request, res: Response) {
   try {
+    await runMiddleware(req, res, uploadMiddleware);
+
     const { name, email, password } = req.body;
-    const { file } = req;
     if (!email || !password || !name) {
       res
         .status(400)
@@ -21,8 +29,8 @@ export default async function handler(req: Request, res: Response) {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       let profilePictureBase64: string | undefined = undefined;
-      if (file) {
-        profilePictureBase64 = file.buffer.toString("base64");
+      if (req.file) {
+        profilePictureBase64 = req.file.buffer.toString("base64");
       }
 
       const newUser = await prisma.user.create({
@@ -33,7 +41,7 @@ export default async function handler(req: Request, res: Response) {
           profilePicture: profilePictureBase64,
         },
       });
-      
+
       res
         .status(200)
         .json({ message: "User created successfully", data: newUser });
