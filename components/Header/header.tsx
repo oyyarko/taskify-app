@@ -2,6 +2,7 @@
 import React from "react";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/ui/Button/button";
+import { UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   const updateThemeHandler = () => {
@@ -33,6 +34,7 @@ const Header = () => {
           Taskify
         </div>
         <div className="flex gap-3 items-center">
+          <UserButton />
           <div onClick={() => updateThemeHandler()}>
             <input
               type="checkbox"

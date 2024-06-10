@@ -1,10 +1,10 @@
-import { Handler, Request, Response } from 'express';
-import multer from 'multer';
+import { Handler, Request, Response } from "express";
+import multer from "multer";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-export const uploadMiddleware = upload.single('profilePicture');
+export const uploadMiddleware = upload.single("profilePicture");
 
 export const runMiddleware = (req: Request, res: Response, fn: Handler) => {
   return new Promise((resolve, reject) => {
@@ -13,6 +13,6 @@ export const runMiddleware = (req: Request, res: Response, fn: Handler) => {
         return reject(result);
       }
       return resolve(result);
-    });
+    }); 
   });
 };

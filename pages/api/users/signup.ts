@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import { runMiddleware, uploadMiddleware } from "@/lib/middleware";
 
@@ -8,6 +9,8 @@ export const config = {
     bodyParser: false, // Disable the default body parser
   },
 };
+
+const JWT_SECRET = "secret";
 
 export default async function signup(req: Request, res: Response) {
   try {
@@ -42,9 +45,16 @@ export default async function signup(req: Request, res: Response) {
         },
       });
 
+      const token = jwt.sign({ userId: newUser.id }, JWT_SECRET, {
+        expiresIn: "1h",
+      });
+
       res
         .status(200)
-        .json({ message: "User created successfully", data: newUser });
+        .json({
+          message: "User created successfully",
+          data: { ...newUser, token: token },
+        });
     }
   } catch (err) {
     res.status(500).json({ error: "Error while signing up" });

@@ -31,11 +31,21 @@ const KanbanContainer = ({
         {...listeners}
         className={clsx(
           "rounded-3xl relative cursor-grab",
-          active ? (active.id === id ? "opacity-100" : "opacity-70") : "opacity-100"
+          active
+            ? active.id === id
+              ? "opacity-100"
+              : "opacity-70"
+            : "opacity-100"
         )}
       >
         {active?.id === id && (
-          <DragOverlay zIndex={1000}>
+          <DragOverlay
+            zIndex={1000}
+            dropAnimation={{
+              duration: 500,
+              easing: "cubic-bezier(0.18, 0.67, 0.6, 1.22)",
+            }}
+          >
             <div className="rounded-3xl cursor-grabbing">{children}</div>
           </DragOverlay>
         )}
